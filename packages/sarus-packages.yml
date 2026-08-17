@@ -1,0 +1,123 @@
+generated: '2026-08-17'
+method: searched
+source: https://pypi.org/project/sarus/ ; https://pypi.org/project/sarus-data-spec-public/ ; https://crates.io/crates/qrlew ; https://pypi.org/project/pyqrlew/ ; https://github.com/sarus-tech ; https://github.com/Qrlew
+name: Sarus client libraries and packages
+provider: Sarus Technologies
+note: >-
+  Sarus ships no JavaScript/TypeScript, Java, .NET, Go, Ruby or PHP client. Its entire published
+  client surface is Python plus the Rust Qrlew engine. Ownership of the Qrlew packages is confirmed
+  first-party: the github.com/Qrlew organisation profile states "Qrlew is Sarus open source SQL
+  manipulation engine and differential privacy impl", the crates.io description is "Sarus Qrlew
+  Engine", and Sarus published both the announcement post and the arXiv paper (2401.06273) under
+  its own name. CURRENCY FINDING — every first-party package below last published in 2024
+  (latest: pyqrlew and qrlew on 2024-12-12). Nothing has shipped in ~20 months as of this pass,
+  while the company continues to publish product blog posts, which is a divergence worth noting
+  for any integrator evaluating the SDK.
+package_count: 5
+official_count: 5
+languages:
+- python
+- rust
+packages:
+- name: sarus
+  registry: pypi
+  url: https://pypi.org/project/sarus/
+  language: python
+  official: true
+  version: 0.12.0
+  published: '2024-11-21'
+  license: Apache-2.0
+  requires_python: '>=3.9,<3.11'
+  description: >-
+    Python client for the Sarus Gateway. Provides connectors to explore and train models on
+    confidential data via synthetic-data browsing, remote execution and differential privacy.
+    Entry point is `from sarus import Client; Client(url=...)`.
+  note: >-
+    Published by "Sarus Technologies <contact@sarus.tech>" — unambiguously first-party. Pinned to
+    Python 3.9/3.10 only, which is itself an ageing constraint.
+- name: sarus-data-spec-public
+  registry: pypi
+  url: https://pypi.org/project/sarus-data-spec-public/
+  language: python
+  official: true
+  version: 4.5.3
+  published: '2024-12-05'
+  license: Apache-2.0
+  requires_python: '>=3.8'
+  description: >-
+    A library to manage Sarus datasets. Carries the Sarus Data Spec protobuf definitions (19 .proto
+    files) that model datasets, schemas, transforms, types, statistics and privacy constraints.
+  note: >-
+    This sdist is the source of the protobuf schema captured verbatim in grpc/. It is a dependency
+    of the `sarus` client (pinned at 4.5.1.dev0 there).
+- name: qrlew
+  registry: crates.io
+  url: https://crates.io/crates/qrlew
+  language: rust
+  official: true
+  version: 0.9.27
+  published: '2024-12-12'
+  license: Apache-2.0
+  description: >-
+    "Sarus Qrlew Engine" — the open-source Rust library that parses SQL into Relations, rewrites
+    them into differentially-private equivalents, and renders them back to SQL for execution in
+    many dialects.
+  repository: https://github.com/Qrlew/qrlew
+  note: 85,002 downloads recorded on crates.io at the time of this probe.
+- name: pyqrlew
+  registry: pypi
+  url: https://pypi.org/project/pyqrlew/
+  language: python
+  official: true
+  version: 0.9.27
+  published: '2024-12-12'
+  license: Apache-2.0
+  requires_python: '>=3.9'
+  description: >-
+    Python bindings for the Qrlew engine — manipulate SQL queries with privacy applications in mind.
+  repository: https://github.com/Qrlew/pyqrlew
+  documentation: https://pyqrlew.readthedocs.io
+- name: qrlew-datasets
+  registry: pypi
+  url: https://pypi.org/project/qrlew-datasets/
+  language: python
+  official: true
+  version: 0.9.0
+  published: '2024-01-22'
+  license: Apache-2.0
+  requires_python: '>=3.9,<4.0'
+  description: Sample SQL datasets used to exercise the Qrlew engine.
+containers:
+- name: ghcr.io/qrlew/server
+  registry: ghcr
+  tag: main
+  official: true
+  version: null
+  published: null
+  source: https://github.com/Qrlew/server
+  install: docker run -p 3000:3000 ghcr.io/qrlew/server:main
+  note: >-
+    The Qrlew RESTful server is distributed only as a container image built on every push to main.
+    The published run command uses the floating `:main` tag, so there is no pinned version a
+    consumer can pin to and no registry metadata endpoint that answers unauthenticated for a
+    version/date — recorded as null rather than guessed. The repository's last push was
+    2024-06-25.
+registries_checked:
+- registry: pypi
+  result: 4 first-party packages found
+- registry: crates.io
+  result: 1 first-party crate found (qrlew)
+- registry: npm
+  result: >-
+    no first-party package. https://registry.npmjs.org/sarus returns HTTP 404; the only near-name
+    match in npm search is @anephenix/sarus, an unrelated WebSocket library by Anephenix.
+- registry: maven-central
+  result: none
+- registry: nuget
+  result: none
+- registry: pkg.go.dev
+  result: none
+- registry: rubygems
+  result: none
+- registry: packagist
+  result: none

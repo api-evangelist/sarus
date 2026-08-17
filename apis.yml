@@ -1,19 +1,78 @@
 aid: sarus
 name: Sarus
-description: 'Sarus is a company surfaced as a portfolio company of serena and added to the API Evangelist
-  network as a stub for enrichment. Sector: ai-data. This profile is a lead awaiting the enrichment pipeline.'
+description: 'Sarus Technologies is a Paris-based privacy-engineering company (Y Combinator W22,
+  founded 2020 by the team behind AlephD) that builds a privacy layer sitting between sensitive data
+  and the analysts, data scientists and LLMs that need it. The Sarus platform deploys inside the
+  customer''s own infrastructure — Docker or Kubernetes, on-premises or on AWS, Azure and GCP — and
+  applies differential privacy, DP-trained synthetic data and on-the-fly SQL and Python query
+  rewriting so practitioners can run analytics, machine learning and LLM fine-tuning on data they
+  never see. Developers reach the platform through the first-party ''sarus'' Python client for the
+  Sarus Gateway, a BI connector, and Qrlew, Sarus''s open-source Rust SQL-rewriting engine. Because
+  the product is customer-deployed, Sarus publishes no hosted, multi-tenant API base URL and no
+  OpenAPI; its public machine-readable surface is the Sarus Data Spec protobuf schema and the Qrlew
+  server''s published request examples.'
 url: https://raw.githubusercontent.com/api-evangelist/sarus/refs/heads/main/apis.yml
 x-type: company
 x-source: serena-portfolio
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-08-17'
 modified: '2026-08-17'
+image: https://cdn.prod.website-files.com/61bc58893bfe8290fd9fa12a/61bc58893bfe827a089fa131_logotype-dark.svg
 tags:
 - Company
 - Ai Data
-apis: []
+- Privacy
+- Differential Privacy
+- Synthetic Data
+- Analytics
+- Machine Learning
+- Data Governance
+- SQL
+- Open Source
+apis:
+- aid: sarus:sarus-gateway
+  name: Sarus Gateway API
+  description: 'The Sarus Gateway is the server component of the Sarus privacy layer. It is deployed
+    inside the customer''s own environment (Docker or Kubernetes, on-premises or in AWS/Azure/GCP)
+    and is reached by the first-party ''sarus'' Python client, a BI connector, and SQL. Because every
+    deployment is customer-hosted there is no shared production base URL; the host is a deployment
+    variable. The reference at docs.sarus.tech is no longer publicly readable (GitLab Pages access
+    control returns 401), so no OpenAPI or public endpoint reference could be captured.'
+  humanURL: https://docs.sarus.tech/
+  baseURL: https://{sarus-gateway-host}/
+  tags:
+  - Privacy
+  - Differential Privacy
+  - Analytics
+  - Machine Learning
+  properties:
+  - type: Documentation
+    url: https://docs.sarus.tech/
+  - type: SDKs
+    url: packages/sarus-packages.yml
+  - type: Protobuf
+    url: grpc/sarus-schema.proto
+- aid: sarus:qrlew-server
+  name: Qrlew Server API
+  description: 'Qrlew is Sarus''s open-source (Apache 2.0) SQL manipulation and differential-privacy
+    engine, written in Rust and published under github.com/Qrlew. The Qrlew server wraps it in a small
+    RESTful API — POST /dot, /rewrite_as_privacy_unit_preserving, /rewrite_with_differential_privacy,
+    /verify and GET /public_key — distributed as the container image ghcr.io/qrlew/server:main and run
+    by the operator. The demo host the README names (qrlew.sarus.app) no longer resolves to a live
+    service, so this is a self-hosted surface only.'
+  humanURL: https://github.com/Qrlew/server
+  baseURL: https://{qrlew-server-host}/
+  tags:
+  - SQL
+  - Differential Privacy
+  - Open Source
+  properties:
+  - type: SourceCode
+    url: https://github.com/Qrlew/server
+  - type: Documentation
+    url: https://qrlew.github.io/
+  - type: Examples
+    url: examples/qrlew-server-example.http
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -21,4 +80,38 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://sarus.tech/
+  url: https://www.sarus.tech/
+- type: Documentation
+  url: https://docs.sarus.tech/
+- type: GitHubOrganization
+  url: https://github.com/sarus-tech
+- type: Blog
+  url: https://www.sarus.tech/blog
+- type: Support
+  url: https://www.sarus.tech/contact
+- type: PrivacyPolicy
+  url: https://www.sarus.tech/privacy-policy
+- type: Packages
+  url: packages/sarus-packages.yml
+- type: SDKs
+  url: packages/sarus-packages.yml
+- type: Protobuf
+  url: grpc/sarus-schema.proto
+- type: Examples
+  url: examples/qrlew-server-example.http
+- type: LLMsTxt
+  url: llms/sarus-llms.txt
+- type: Conformance
+  url: conformance/sarus-conformance.yml
+- type: Lifecycle
+  url: lifecycle/sarus-lifecycle.yml
+- type: Authentication
+  url: authentication/sarus-authentication.yml
+- type: Conventions
+  url: conventions/sarus-conventions.yml
+- type: ChangeLog
+  url: changelog/sarus-changelog.yml
+- type: Plans
+  url: plans/sarus-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/sarus-rate-limits.yml
