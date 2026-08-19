@@ -14,7 +14,7 @@ description: 'Sarus Technologies is a Paris-based privacy-engineering company (Y
 url: https://raw.githubusercontent.com/api-evangelist/sarus/refs/heads/main/apis.yml
 x-type: company
 x-source: serena-portfolio
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-08-17'
 modified: '2026-08-17'
 image: https://cdn.prod.website-files.com/61bc58893bfe8290fd9fa12a/61bc58893bfe827a089fa131_logotype-dark.svg
