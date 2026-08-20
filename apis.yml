@@ -25,6 +25,17 @@ tags:
 - Differential Privacy
 - Synthetic Data
 - Analytics
+- Machine-Learning
+- Data Governance
+- SQL
+- Open-Source
+tags_raw:
+- Company
+- Ai Data
+- Privacy
+- Differential Privacy
+- Synthetic Data
+- Analytics
 - Machine Learning
 - Data Governance
 - SQL
@@ -41,6 +52,11 @@ apis:
   humanURL: https://docs.sarus.tech/
   baseURL: https://{sarus-gateway-host}/
   tags:
+  - Privacy
+  - Differential Privacy
+  - Analytics
+  - Machine-Learning
+  tags_raw:
   - Privacy
   - Differential Privacy
   - Analytics
@@ -63,6 +79,10 @@ apis:
   humanURL: https://github.com/Qrlew/server
   baseURL: https://{qrlew-server-host}/
   tags:
+  - SQL
+  - Differential Privacy
+  - Open-Source
+  tags_raw:
   - SQL
   - Differential Privacy
   - Open Source
