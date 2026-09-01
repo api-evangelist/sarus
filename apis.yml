@@ -111,6 +111,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: License
+  name: Apache-2.0
+  url: https://github.com/Qrlew/server/blob/main/LICENSE
 - type: Website
   url: https://www.sarus.tech/
 - type: Documentation
