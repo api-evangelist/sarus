@@ -28,7 +28,7 @@ deliveryModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-08-17'
-modified: '2026-08-17'
+modified: '2026-09-16'
 image: https://cdn.prod.website-files.com/61bc58893bfe8290fd9fa12a/61bc58893bfe827a089fa131_logotype-dark.svg
 tags:
 - Company
@@ -59,10 +59,12 @@ apis:
     inside the customer''s own environment (Docker or Kubernetes, on-premises or in AWS/Azure/GCP)
     and is reached by the first-party ''sarus'' Python client, a BI connector, and SQL. Because every
     deployment is customer-hosted there is no shared production base URL; the host is a deployment
-    variable. The reference at docs.sarus.tech is no longer publicly readable (GitLab Pages access
-    control returns 401), so no OpenAPI or public endpoint reference could be captured.'
+    variable. The reference at docs.sarus.tech is not publicly readable (it serves a *.gitlab.io
+    certificate and redirects to the GitLab Pages access-control login), so no OpenAPI or public
+    endpoint reference could be captured; the authentication flow and Gateway resources are read
+    from the first-party Python client, which requires the base URL to end in /gateway.'
   humanURL: https://docs.sarus.tech/
-  baseURL: https://{sarus-gateway-host}/
+  baseURL: https://{sarus-gateway-host}/gateway
   tags:
   - Privacy
   - Differential Privacy
@@ -80,6 +82,8 @@ apis:
     url: packages/sarus-packages.yml
   - type: Protobuf
     url: grpc/sarus-schema.proto
+  - type: Authentication
+    url: authentication/sarus-authentication.yml
 - aid: sarus:qrlew-server
   name: Qrlew Server API
   description: 'Qrlew is Sarus''s open-source (Apache 2.0) SQL manipulation and differential-privacy
@@ -105,12 +109,16 @@ apis:
     url: https://qrlew.github.io/
   - type: Examples
     url: examples/qrlew-server-example.http
+  - type: ChangeLog
+    url: https://github.com/Qrlew/server/blob/main/CHANGELOG.md
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/sarus-domain-security.yml
 - type: License
   name: Apache-2.0
   url: https://github.com/Qrlew/server/blob/main/LICENSE
@@ -146,7 +154,8 @@ common:
   url: conventions/sarus-conventions.yml
 - type: ChangeLog
   url: changelog/sarus-changelog.yml
-- type: Plans
-  url: plans/sarus-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/sarus-rate-limits.yml
+x-enrichment:
+  date: '2026-09-16'
+  status: enriched
+  artifacts_added: 10
+  pass: local-v3
