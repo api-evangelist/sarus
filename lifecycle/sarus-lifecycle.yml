@@ -1,0 +1,29 @@
+generated: '2026-09-16'
+method: searched
+source: https://github.com/Qrlew/qrlew/blob/main/CHANGELOG.md ; https://pypi.org/project/sarus/
+versioning:
+  scheme: semver
+  applies_to: Qrlew engine (qrlew crate, pyqrlew) and the 'sarus' Python client
+  docs: https://github.com/Qrlew/qrlew/blob/main/CHANGELOG.md
+  note: >-
+    The Qrlew changelog states it adheres to Semantic Versioning. The Gateway HTTP surface carries
+    no version in its path (the client targets {host}/gateway) and publishes no API versioning
+    policy; the client sends its own version in the SARUS-Client-SDK-Version header.
+  current:
+    qrlew: 0.9.27
+    sarus-client: 0.12.0
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: No deprecation or sunset policy is published.
+sla:
+  url: null
+  note: No public SLA; the platform runs in the customer's own infrastructure.
+status_page: null
+deprecated_operations: []
+activity:
+  last_release: '2024-12-12'
+  note: >-
+    Every first-party package last published between 2024-01-22 and 2024-12-12, and
+    https://qrlew.sarus.app (the test server the Qrlew server README names) no longer answers. The
+    company website and blog remain live.

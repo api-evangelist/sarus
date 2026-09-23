@@ -1,0 +1,50 @@
+generated: '2026-09-16'
+method: derived
+source: grpc/ (Sarus Data Spec protos), examples/qrlew-server-example.http, authentication/sarus-authentication.yml, https://github.com/Qrlew/qrlew/blob/main/CHANGELOG.md, https://www.sarus.tech/security-compliance
+standards:
+- id: protobuf-proto3
+  conforms: true
+  evidence: grpc/sarus-schema.proto and the 18 sibling files declare syntax = "proto3" (sarus-data-spec-public 4.5.3)
+- id: oidc
+  conforms: true
+  evidence: >-
+    the sarus Python client offers Google login via GET {gateway}/oidc_login (Client google_login=True);
+    Sarus acts as an OIDC relying party, it does not publish an OIDC provider
+- id: oauth2
+  conforms: false
+  evidence: no OAuth 2.0 authorization server metadata or token flow published (well-known/ probes all 404)
+- id: openapi
+  conforms: false
+  evidence: no OpenAPI published on any probed host; docs.sarus.tech is access-controlled
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: client parses a plain JSON {"message"} error body
+- id: semver
+  conforms: true
+  evidence: Qrlew CHANGELOG.md states "this project adheres to Semantic Versioning"
+- id: keep-a-changelog
+  conforms: true
+  evidence: Qrlew CHANGELOG.md states "The format is based on Keep a Changelog"
+- id: differential-privacy
+  conforms: true
+  kind: technique, not a certification
+  evidence: >-
+    POST /rewrite_with_differential_privacy takes epsilon/delta budgets (examples/qrlew-server-example.http);
+    the method is described in arXiv 2401.06273 published by Sarus
+- id: sql-dialects
+  conforms: true
+  kind: domain interoperability
+  evidence: >-
+    Qrlew 0.9.24 changelog lists translators for mssql, bigquery, mysql, databricks, hive and redshift
+    alongside PostgreSQL, rendering rewritten relations back to each dialect's SQL
+- id: pagination
+  conforms: false
+  evidence: no pagination parameters observed in client list calls
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key observed (conventions/sarus-conventions.yml)
+certifications: []
+compliance_note: >-
+  https://www.sarus.tech/security-compliance discusses GDPR-style anonymization and a zero-trust
+  posture but names no certification (no SOC 2, ISO 27001, HIPAA attestation). No Compliance pointer
+  is emitted.

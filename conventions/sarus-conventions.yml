@@ -1,0 +1,91 @@
+generated: '2026-09-16'
+method: derived
+source:
+- https://files.pythonhosted.org/packages/45/e3/3cb946afbd3e32f30a43cbe68a1c6e7d8a32b4873664a3c4ba5a180f0e67/sarus-0.12.0.tar.gz (sarus/sarus.py, sarus/manager/dataspec_api.py)
+- https://github.com/Qrlew/server (README + example.http request examples, captured in examples/)
+note: >-
+  Sarus publishes no OpenAPI and its reference is access-controlled, so these conventions are read
+  from the first-party Python client and the Qrlew server's published request examples. They
+  describe what the shipped code does, not a documented contract.
+cross_links:
+  authentication: authentication/sarus-authentication.yml
+  lifecycle: lifecycle/sarus-lifecycle.yml
+  rate_limits: rate-limits/sarus-rate-limits.yml
+  changelog: changelog/sarus-changelog.yml
+  schema: grpc/sarus-schema.proto
+surfaces:
+- api: sarus:sarus-gateway
+  base: https://{sarus-gateway-host}/gateway
+  style: JSON over HTTP, called through the 'sarus' Python client
+  resources_seen_in_client:
+  - POST /login
+  - GET /oidc_login?headless=true
+  - GET /datasets
+  - GET /datasets/{id}
+  - GET /datasets/name/{name}
+  - GET /dataconnections
+  - GET /dataspecs/{uuid}
+  - GET /dataspecs/{uuid}/schema
+  - GET /dataspecs/{uuid}/status
+  - GET /dataspecs/{uuid}/result
+  - POST /dataspecs/graph
+  - POST /dataspecs/{uuid}/rewrite
+  - POST /dataspecs/{uuid}/launch
+  - POST /dataspecs/{uuid}/push_sql
+  - GET /training_tasks/{id}
+  - DELETE /training_tasks/{id}/abort
+  - GET /query_tasks/{id}
+  - GET /models/{id}
+- api: sarus:qrlew-server
+  base: https://{qrlew-server-host}/
+  style: stateless JSON over HTTP
+  operations:
+  - GET /public_key
+  - POST /dot
+  - POST /rewrite_as_privacy_unit_preserving
+  - POST /rewrite_with_differential_privacy
+  - POST /verify
+authentication:
+  style: session cookie (email/password POST /login, or Google OIDC)
+  profile: authentication/sarus-authentication.yml
+idempotency:
+  coverage: none
+  header: null
+  note: >-
+    No idempotency key or replay protection appears in the client or the Qrlew examples. The Qrlew
+    server's POST operations are pure transformations of the request body (no stored state), so
+    repeating one has no side effect, but that is a property of the operation, not a mechanism.
+pagination:
+  style: none observed
+  note: List calls (GET /datasets, GET /dataconnections) return a full JSON array.
+async_tasks:
+  note: >-
+    Long-running work is modelled as tasks — POST /dataspecs/{uuid}/launch, then poll
+    GET /dataspecs/{uuid}/status and fetch GET /dataspecs/{uuid}/result; training runs are polled
+    at GET /training_tasks/{id}.
+request_tracing:
+  header: null
+  client_version_header: SARUS-Client-SDK-Version
+versioning:
+  style: none in the URL or headers; client version advertised in SARUS-Client-SDK-Version
+errors:
+  envelope: JSON object with a "message" field on 4xx
+  note: >-
+    The client raises "Server - <message>" for 4xx bodies carrying message, and raw HTTP errors for
+    5xx. 401 on /login means incorrect credentials. No RFC 9457 problem+json.
+rate_limit_signaling:
+  headers: []
+  note: none documented or handled by the client
+reversibility:
+  grade: none
+  write_surfaces:
+  - surface: training tasks
+    reversal: DELETE /training_tasks/{id}/abort (client method _abort_training; expects 204)
+    window: null
+    docs: null
+    note: >-
+      Observed in client code only — an abort of a running task, not an undo of its effects. No
+      public contract documents it and no window is stated.
+  - surface: Qrlew server rewrites
+    reversal: null
+    note: stateless computations; nothing is persisted, so there is nothing to reverse.

@@ -1,0 +1,62 @@
+generated: '2026-09-16'
+method: probed
+source: live unauthenticated GET of each /.well-known path on every host the record knows
+note: >-
+  Every path missed on every reachable host. www.sarus.tech (Webflow) answers a real 404 with
+  "Invalid .well-known request" for every /.well-known/* path, including the negative control, so
+  there is no catch-all false positive. sarus.tech 301-redirects every path to www.sarus.tech.
+  docs.sarus.tech could not be probed: it CNAMEs to sarus-tech.gitlab.io, presents a *.gitlab.io
+  certificate (hostname mismatch) and, with verification disabled, 302s to the GitLab Pages access
+  control login. qrlew.sarus.app (the Qrlew test server named in github.com/Qrlew/server) and
+  demo.sarus.tech did not answer at all. No WellKnown or SecurityTxt pointer is emitted.
+hit_count: 0
+path_echo_control: passed
+hosts:
+- host: https://www.sarus.tech
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/ucp.json, status: 404}
+  - {path: /.well-known/acp.json, status: 404}
+  - {path: /.well-known/aauth-resource.json, status: 404}
+  - {path: /.well-known/apis.json, status: 404}
+  - {path: /apis.json, status: 404}
+  - {path: /apis.yml, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /.well-known/sarus-negative-control-7f3ab91c.json, status: 404}
+- host: https://sarus.tech
+  note: every path 301-redirects to https://www.sarus.tech (results above)
+  documents:
+  - {path: /.well-known/security.txt, status: 301}
+  - {path: /.well-known/openid-configuration, status: 301}
+  - {path: /.well-known/oauth-authorization-server, status: 301}
+  - {path: /.well-known/oauth-protected-resource, status: 301}
+  - {path: /.well-known/api-catalog, status: 301}
+  - {path: /.well-known/ai-plugin.json, status: 301}
+  - {path: /.well-known/agent-card.json, status: 301}
+  - {path: /.well-known/agent.json, status: 301}
+  - {path: /apis.json, status: 301}
+- host: https://qrlew.github.io
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /apis.json, status: 404}
+- host: https://docs.sarus.tech
+  note: TLS hostname mismatch (*.gitlab.io certificate); 302 to projects.gitlab.io/auth — access-controlled GitLab Pages
+  documents:
+  - {path: /, status: 302}
+- host: https://qrlew.sarus.app
+  note: connection failed (no HTTP response)
+  documents:
+  - {path: /, status: 0}

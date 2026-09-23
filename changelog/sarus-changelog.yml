@@ -1,0 +1,75 @@
+generated: '2026-09-16'
+method: searched
+source: https://github.com/Qrlew/qrlew/blob/main/CHANGELOG.md
+scope: >-
+  Qrlew engine (crate qrlew / pypi pyqrlew), Sarus's open-source SQL-rewriting and
+  differential-privacy engine that the Qrlew server wraps. Sarus publishes no dated changelog for
+  the Sarus Gateway or the 'sarus' Python client; their only dated release record is the PyPI
+  release history, captured below as release_history.
+format: Keep a Changelog 1.0.0
+scheme: semver
+current_version: 0.9.27
+current_date: '2024-12-11'
+note: >-
+  No entry after 0.9.27 (2024-12-11); the [Unreleased] section is empty and the repository was last
+  pushed 2024-12-12. Nothing has shipped for ~21 months as of this pass.
+entries:
+- version: 0.9.27
+  date: '2024-12-11'
+  breaking: false
+  fixed: [Fix gaussian tau.]
+- version: 0.9.26
+  date: '2024-12-05'
+  breaking: false
+  fixed: [Limit the privacy unit contribution to at most max_privacy_unit_groups when applying tau_thresholding.]
+- version: 0.9.25
+  date: '2024-11-27'
+  breaking: false
+  added: [Add attributes to data_type::Id]
+- version: 0.9.24
+  date: '2024-09-27'
+  breaking: false
+  fixed: [mssql and bigquery translator]
+  added: [mysql, databricks, hive, redshift translators, mysql io connection for testing, tool to get tables prefix]
+- version: 0.9.23
+  date: '2024-07-09'
+  breaking: false
+  fixed: [fixing noise multiplier of the gaussian dp event which should be independent from the sensitivity.]
+- version: 0.9.22
+  date: '2024-07-09'
+  breaking: false
+  changed: [When translating relations to queries transform all nested CASE expressions into a single CASE]
+- version: 0.9.21
+  date: '2024-06-27'
+  breaking: false
+  changed:
+  - Add integer domains to few boolean functions to reduce timing of fun.super_image
+  - Break equality for some datatype by changing DataType's is_subset_of during the Variant trait implementation.
+- version: 0.9.20
+  date: '2024-06-20'
+  breaking: false
+  added: [support for extract_epoch function, support for NULL and Boolean values in the SELECT when parsing a query]
+  changed: [Polymorphic properties of count(distinct ) are set as those of count]
+release_history:
+- package: sarus
+  registry: pypi
+  source: https://pypi.org/pypi/sarus/json
+  releases:
+  - {version: 0.12.0, date: '2024-11-21'}
+  - {version: 0.12.0.dev0, date: '2024-11-05'}
+  - {version: 0.11.8.dev1, date: '2024-10-17'}
+  - {version: 0.11.8.dev0, date: '2024-10-15'}
+  - {version: 0.11.7, date: '2024-10-03'}
+  - {version: 0.11.6, date: '2024-09-19'}
+server_changelog:
+  api: sarus:qrlew-server
+  source: https://github.com/Qrlew/server/blob/main/CHANGELOG.md
+  format: Keep a Changelog 1.0.0
+  scheme: semver
+  current_version: 0.9.0
+  current_date: '2023-12-22'
+  entries:
+  - {version: 0.9.0, date: '2023-12-22', breaking: false, changed: [Removed --locked in the dockerfile]}
+  - {version: 0.7.0, date: '2023-12-22', breaking: false, added: [SD are optional]}
+  - {version: 0.5.2, date: '2023-11-19', breaking: false, added: [Uses SD now]}
+  - {version: 0.4.5, date: '2023-11-13', breaking: false, added: [Updated qrlew version to 0.4.12 (added public table support)]}

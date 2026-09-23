@@ -1,0 +1,12 @@
+generated: '2026-09-16'
+method: searched
+source: https://www.sarus.tech/
+plan_count: 0
+plans: []
+evidence:
+- {url: https://www.sarus.tech/pricing, status: 404}
+- {url: https://www.sarus.tech/, status: 200, note: 'only "Get in touch" / "Try now" calls to action; no prices'}
+note: >-
+  Sarus publishes no plans or prices — the product is sold as a customer-deployed enterprise
+  platform through a contact form (https://www.sarus.tech/contact). The Qrlew engine and server are
+  free Apache-2.0 open source. No Plans/Pricing pointer is emitted in apis.yml.

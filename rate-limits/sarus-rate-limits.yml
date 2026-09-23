@@ -1,0 +1,12 @@
+generated: '2026-09-16'
+method: searched
+source: https://github.com/Qrlew/server ; https://pypi.org/project/sarus/
+limit_count: 0
+limits: []
+headers: []
+note: >-
+  No published rate limits. The Sarus Gateway is deployed inside each customer's infrastructure, so
+  any throttling is the operator's configuration; its reference (docs.sarus.tech) is
+  access-controlled and the first-party 'sarus' client handles no 429 or Retry-After signal. The
+  Qrlew server README documents none either. Recorded as an honest zero; no RateLimits pointer is
+  emitted in apis.yml because there is no rate-limit surface to point at.

@@ -1,0 +1,42 @@
+generated: '2026-09-16'
+method: searched
+source: https://files.pythonhosted.org/packages/45/e3/3cb946afbd3e32f30a43cbe68a1c6e7d8a32b4873664a3c4ba5a180f0e67/sarus-0.12.0.tar.gz
+source_file: sarus-0.12.0/sarus/sarus.py (class Client)
+note: >-
+  Sarus publishes no OpenAPI and its reference at docs.sarus.tech is access-controlled, so this
+  profile is read from the first-party 'sarus' Python client (PyPI 0.12.0, published by Sarus
+  Technologies) — the code that actually authenticates against a Sarus Gateway. It applies to the
+  customer-deployed Sarus Gateway only. The open-source Qrlew server (github.com/Qrlew/server)
+  documents no authentication at all.
+summary:
+  types: [session-cookie, openIdConnect]
+  api_key_in: []
+  oauth2_flows: []
+schemes:
+- name: credentialsLogin
+  type: session-cookie
+  applies_to: sarus:sarus-gateway
+  login_request: POST {gateway}/login with JSON body {"email", "password"}
+  session: the requests.Session keeps the cookie the Gateway sets and replays it on every call
+  failure: HTTP 401 on incorrect credentials
+  note: The client requires the base URL to end with /gateway (Client._URL_SUFFIX).
+- name: googleOidcLogin
+  type: openIdConnect
+  applies_to: sarus:sarus-gateway
+  provider: Google
+  login_request: browser opens GET {gateway}/oidc_login?headless=true
+  session: >-
+    the user pastes a base64 token from the login page; the client decodes it and sets it as the
+    'session' cookie
+  sdk_option: Client(url=..., google_login=True)
+- name: none
+  type: none
+  applies_to: sarus:qrlew-server
+  note: >-
+    The Qrlew server README and published request examples carry no credentials or auth headers.
+    Its GET /public_key and POST /verify endpoints concern signing of rewritten queries, not
+    caller authentication.
+headers:
+- name: SARUS-Client-SDK-Version
+  sent_by: sarus Python client on every request
+  value: the installed client version
