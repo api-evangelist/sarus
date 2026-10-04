@@ -37,10 +37,10 @@ tags:
 - Differential Privacy
 - Synthetic Data
 - Analytics
-- Machine-Learning
+- Machine Learning
 - Data Governance
 - SQL
-- Open-Source
+- Open Source
 tags_raw:
 - Company
 - Ai Data
@@ -52,6 +52,8 @@ tags_raw:
 - Data Governance
 - SQL
 - Open Source
+- Machine-Learning
+- Open-Source
 apis:
 - aid: sarus:sarus-gateway
   name: Sarus Gateway API
@@ -69,12 +71,13 @@ apis:
   - Privacy
   - Differential Privacy
   - Analytics
-  - Machine-Learning
+  - Machine Learning
   tags_raw:
   - Privacy
   - Differential Privacy
   - Analytics
   - Machine Learning
+  - Machine-Learning
   properties:
   - type: Documentation
     url: https://docs.sarus.tech/
@@ -97,11 +100,12 @@ apis:
   tags:
   - SQL
   - Differential Privacy
-  - Open-Source
+  - Open Source
   tags_raw:
   - SQL
   - Differential Privacy
   - Open Source
+  - Open-Source
   properties:
   - type: SourceCode
     url: https://github.com/Qrlew/server
