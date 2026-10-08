@@ -121,6 +121,10 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Plans
+  url: plans/sarus-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/sarus-rate-limits.yml
 - type: DomainSecurity
   url: security/sarus-domain-security.yml
 - type: License
