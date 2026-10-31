@@ -64,6 +64,102 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Sarus is a company surfaced as a portfolio company of serena and added to the API Evangelist network as a stub for enrichment. Sector: ai-data. This profile is a lead awaiting the enrichment pipeline.
+Sarus Technologies is a Paris-based privacy-engineering company (Y Combinator W22, founded 2020 by the team behind AlephD) that builds a privacy layer sitting between sensitive data and the analysts, data scientists and LLMs that need it. The Sarus platform deploys inside the customer's own infrastructure — Docker or Kubernetes, on-premises or on AWS, Azure and GCP — and applies differential privacy, DP-trained synthetic data and on-the-fly SQL and Python query rewriting so practitioners can run analytics, machine learning and LLM fine-tuning on data they never see. Developers reach the platform through the first-party 'sarus' Python client for the Sarus Gateway, a BI connector, and Qrlew, Sarus's open-source Rust SQL-rewriting engine. Because the product is customer-deployed, Sarus publishes no hosted, multi-tenant API base URL and no OpenAPI; its public machine-readable surface is the Sarus Data Spec protobuf schema and the Qrlew server's published request examples.
 
-Source: portfolio company of [serena](https://github.com/api-evangelist/serena) — https://sarus.tech/
+**Areas:** Company · Ai Data · Privacy · Differential Privacy · Synthetic Data · Analytics · Machine Learning · Data Governance · SQL · Open Source
+
+## Sarus on APIs.io
+
+Everything profiled for Sarus is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/sarus/](https://apis.io/providers/sarus/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Sarus Gateway API](https://apis.io/apis/sarus/sarus-gateway/) — The Sarus Gateway is the server component of the Sarus privacy layer. It is deployed inside the customer's own environment (Docker or Kubernetes,…
+- [Qrlew Server API](https://apis.io/apis/sarus/qrlew-server/) — Qrlew is Sarus's open-source (Apache 2.0) SQL manipulation and differential-privacy engine, written in Rust and published under github.com/Qrlew. The Qrlew…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Sarus Authentication](https://apis.io/security/sarus/sarus-authentication/)
+- [Sarus Domain Security](https://apis.io/security/sarus/sarus-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Sarus Plans Pricing](https://apis.io/plans/sarus/sarus-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Sarus Rate Limits](https://apis.io/rate-limits/sarus/sarus-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.sarus.tech/)
+- [Documentation](https://docs.sarus.tech/)
+- [Support](https://www.sarus.tech/contact)
+- [Blog](https://www.sarus.tech/blog)
+- [Privacy policy](https://www.sarus.tech/privacy-policy)
+- [GitHub](https://github.com/sarus-tech)
+
+## API Evangelist rating
+
+**Kin Score 27.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 30.5 |
+| Contract governance | 4.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 35.7 |
+| Access clarity | 10.5 |
+
+**Agent readiness 19.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 19.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/sarus/](https://apis.io/providers/sarus/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Sarus: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/sarus/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
